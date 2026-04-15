@@ -17,7 +17,7 @@ const config = {
 			strict: true
 		}),
 		paths: {
-			base: process.env.NODE_ENV === 'production' ? '/singulanity' : '',
+			base: process.env.NODE_ENV === 'production' ? '/deforestation' : '',
 		},
 		prerender: {
 			handleHttpError: 'warn'
