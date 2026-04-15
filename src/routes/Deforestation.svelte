@@ -4,8 +4,9 @@
     import gb from './uk-385x600.webp'
 
     const ENGLAND_SQUARE = 133_396 // Площадь Англии
+    const WALES_SQUARE = 21_218 // Площадь Уэльса
     const BRITAIN_SQUARE = 242_495 // Площадь Великобритании
-    const SQUARE_RATIO = ENGLAND_SQUARE / BRITAIN_SQUARE
+    const SQUARE_RATIO = (ENGLAND_SQUARE + WALES_SQUARE) / BRITAIN_SQUARE
 
     const WOOD_PRODUCTIVITY = 150 // куб. м. с га
     const WOOD_DENSITY = 1540 // кг на куб. м
@@ -71,7 +72,7 @@
         setTimeout(() =>{
             conclusion.classList.add('d-none')
             button.classList.remove('disabled')
-        }, 3000)
+        }, 5000)
     }
 
     function getYearPostfix(years: number){
