@@ -3,9 +3,6 @@
     import { onMount } from 'svelte'
     import gb from './uk-385x600.webp'
 
-    const CNV_WIDTH = 385
-    const CNV_HEIGHT = 600
-
     const ENGLAND_SQUARE = 133_396 // Площадь Англии
     const BRITAIN_SQUARE = 242_495 // Площадь Великобритании
     const SQUARE_RATIO = ENGLAND_SQUARE / BRITAIN_SQUARE
@@ -18,9 +15,6 @@
     const IRON_PRODUCTION_PER_FURNACE = 4 * 100 * 356 // 4 крицы по 100 кг в день 
     const WOOD_CONSUMPTION_PER_FURNACE = IRON_PRODUCTION_PER_FURNACE * 50 // ": 7300 тонн 
     const DEFORESTATION_SPEED_PER_FURNACE = WOOD_CONSUMPTION_PER_FURNACE / WOOD_PRODUCTIVITY_KM_KG  // 0,316 кв. км в год - скорость потребления древесины на один горн в год
-
-    let filled = new Array<number>()
-    let origin = new Array<number>()
 
     let button: HTMLButtonElement
     let furnacesPerCountyInput: HTMLInputElement
@@ -55,8 +49,6 @@
         const PIXELS_COUNT = width * height
         const BYTE_COUNT  = PIXELS_COUNT * 4
         
-        // for(let i = 0; browns / greens < SQUARE_RATIO; i += 4){
-
         for(let i = BYTE_COUNT - 4; browns / greens < SQUARE_RATIO; i -= 4){
                 const pixel = data.slice(i, i + 4)
             const [red, green, blue] = pixel
@@ -74,25 +66,6 @@
         }
 
         ctx.putImageData(imageData, 0, 0)
-        /*const speed = Math.round(DEFORESTATION_SPEED_PER_FURNACE * COUNTY_COUNT * +furnacesCount)
-        const englandPixelsCount = Math.round(filled.length * ENGLAND_SQUARE / BRITAIN_SQUARE)
-        const imageData = ctx.getImageData(0, 0, width, height);
-        const {data} = imageData
-        for(let i = 0; i < origin.length; i ++) data[i] = origin[i]
-        ctx.putImageData(imageData, 0, 0)
-        for(let i = filled.length; i > englandPixelsCount; i--){
-            const n = filled[i]
-            data[n] = 166
-            data[n + 1] = 62
-            data[n + 2] = 41
-            if(i % speed === 0){
-                await delayedAction(100)
-                ctx.putImageData(imageData, 0, 0)
-                years++
-            }
-        }
-        ctx.putImageData(imageData, 0, 0)
-        */
         conclusionSpan.innerHTML = `При наличии ${furnacesCount} горнов в каждом из 48 графств Англия могла лишится леса за ${years} ${getYearPostfix(years)}.`
         conclusion.classList.remove('d-none')
         setTimeout(() =>{
@@ -146,7 +119,6 @@
 <section>
     <div class="alert alert-danger alert-dismissible fade show d-none" role="alert" bind:this={conclusion}>
         <span bind:this={conclusionSpan}></span>
-        <!-- button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button -->
     </div>
     <div id="inputs">
             <label for="furnaces-per-county" class="form-label">Горнов на графство: <strict bind:this={furnacesPerCountyOutput}>50</strict></label>

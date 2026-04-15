@@ -5,7 +5,7 @@
     import Footer from '$lib/components/Footer.svelte';
 </script>
 
-<Home icon="github" right={true} href="https://github.com/yababay/comfortable-quantum" title="Репозиторий на Github"/>
+<Home icon="github" right={true} href="https://github.com/yababay/deforestation" title="Репозиторий на Github"/>
 
 <Header />
 
